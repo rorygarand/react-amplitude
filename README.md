@@ -62,12 +62,37 @@ Log an event to Amplitude.
 ###### Example
 
 ```js
-Amplitude.event('EVENT_NAME_TO_BE_LOGGED');
+Amplitude.event('EVENT_NAME_TO_BE_LOGGED', eventProperties);
 ```
 
 |Value|Notes|
 |------|-----|
 |eventName| `String`. Required.|
+|eventProperties| `Object`. Optional.|
+
+#### Amplitude.resetUserId()
+
+Remove user tracking (e.g. on logging out).
+
+###### Example
+
+```js
+Amplitude.resetUserId();
+```
+
+#### Amplitude.setUserId(userId)
+
+Track users through a unique user id.
+
+###### Example
+
+```js
+Amplitude.setUserId(userId);
+```
+
+|Value|Notes|
+|------|-----|
+|userId| `String`. Required.|
 
 ## Development
 
