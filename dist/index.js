@@ -174,15 +174,39 @@ var Amplitude = {
   /**
    * event:
    * Event tracking
-   * @param event {String} required
+   * @param eventName {String} required
+   * @param eventObject {Object} optional
    */
-  event: function event(eventName) {
+  event: function event(eventName, eventObject) {
     if (!eventName) {
       (0, _console.warn)('event name is required');
       return;
     }
 
-    amplitude.getInstance().logEvent(eventName);
+    amplitude.getInstance().logEvent(eventName, eventObject);
+  },
+
+  /**
+   * resetUserId:
+   * 
+   */
+  resetUserId: function resetUserId() {
+    amplitude.getInstance().setUserId(null);
+    amplitude.getInstance().regenerateDeviceId();
+  },
+
+  /**
+   * setUserId:
+   * 
+   * @param userID {String} required
+   */
+  setUserId: function setUserId(userID) {
+    if (!userID) {
+      (0, _console.warn)('userID is required');
+      return;
+    }
+
+    amplitude.getInstance().setUserId(userID);
   }
 };
 

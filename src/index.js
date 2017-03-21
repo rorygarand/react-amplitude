@@ -53,14 +53,15 @@ const Amplitude = {
    * event:
    * Event tracking
    * @param eventName {String} required
+   * @param eventObject {Object} optional
    */
-  event: function (eventName) {
+  event: function (eventName, eventObject) {
     if(!eventName) {
       warn('event name is required');
       return;
     }
 
-    amplitude.getInstance().logEvent(eventName);
+    amplitude.getInstance().logEvent(eventName, eventObject);
   },
 
   /**
