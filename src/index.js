@@ -52,7 +52,7 @@ const Amplitude = {
   /**
    * event:
    * Event tracking
-   * @param event {String} required
+   * @param eventName {String} required
    */
   event: function (eventName) {
     if(!eventName) {
@@ -61,6 +61,29 @@ const Amplitude = {
     }
 
     amplitude.getInstance().logEvent(eventName);
+  },
+
+  /**
+   * resetUserId:
+   * 
+   */
+  resetUserId: function () {
+    amplitude.getInstance().setUserId(null);
+    amplitude.getInstance().regenerateDeviceId();
+  },
+
+  /**
+   * setUserId:
+   * 
+   * @param userID {String} required
+   */
+  setUserId: function (userID) {
+    if(!userID) {
+      warn('userID is required');
+      return;
+    }
+
+    amplitude.getInstance().setUserId(userID);
   }
 };
 
