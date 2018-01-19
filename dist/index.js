@@ -16,9 +16,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -175,15 +175,15 @@ var Amplitude = {
    * event:
    * Event tracking
    * @param eventName {String} required
-   * @param eventObject {Object} optional
+   * @param eventProperties {Object} optional
    */
-  event: function event(eventName, eventObject) {
+  event: function event(eventName, eventProperties) {
     if (!eventName) {
       (0, _console.warn)('event name is required');
       return;
     }
 
-    amplitude.getInstance().logEvent(eventName, eventObject);
+    amplitude.getInstance().logEvent(eventName, eventProperties);
   },
 
   /**

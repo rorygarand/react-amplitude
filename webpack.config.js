@@ -24,7 +24,7 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
-                loaders: ['babel-loader?presets[]=es2015']
+                loaders: ['babel-loader?presets[]=env']
             }
         ]
     },
