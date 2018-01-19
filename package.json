@@ -1,6 +1,6 @@
 {
   "name": "react-amplitude",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "React Amplitude Analytics",
   "entry": "src/index.js",
   "main": "dist/index.js",
@@ -27,9 +27,9 @@
   "homepage": "https://github.com/rorygarand/react-amplitude",
   "dependencies": {},
   "devDependencies": {
-    "babel-core": "^6.24.0",
-    "babel-loader": "^6.4.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
-    "webpack": "^2.2.1"
+    "webpack": "^3.10.0"
   }
 }
