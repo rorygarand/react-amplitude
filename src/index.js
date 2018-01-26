@@ -66,7 +66,7 @@ const Amplitude = {
 
   /**
    * resetUserId:
-   * 
+   *
    */
   resetUserId: function () {
     amplitude.getInstance().setUserId(null);
@@ -75,7 +75,7 @@ const Amplitude = {
 
   /**
    * setUserId:
-   * 
+   *
    * @param userID {String} required
    */
   setUserId: function (userID) {
@@ -85,6 +85,20 @@ const Amplitude = {
     }
 
     amplitude.getInstance().setUserId(userID);
+  },
+
+  /**
+   * setUserProperties:
+   *
+   * @userProps userProps {Object} required
+   */
+  setUserProperties: function (userProps) {
+    if(!userProps) {
+      warn('userProps are required');
+      return;
+    }
+
+    amplitude.getInstance().setUserProperties(userProps);
   }
 };
 

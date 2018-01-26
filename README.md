@@ -94,6 +94,21 @@ Amplitude.setUserId(userId);
 |------|-----|
 |userId| `String`. Required.|
 
+#### Amplitude.setUserProperties(userProps)
+
+Track user properties
+
+###### Example
+
+```js
+Amplitude.setUserProperties(userProps);
+```
+
+|Value|Notes|
+|------|-----|
+|userProps| `object`. Required.|
+
+
 ## Development
 
 ```bash
