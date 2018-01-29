@@ -4,16 +4,33 @@
  * @package react-amplitude
  * @author  Rory Garand <rory@mettleup.com>
  */
+import {isFunction, isNil, isPlainObject, isString} from 'lodash';
+import {error, log, warn} from './utils/console';
 
-import {log, warn} from './utils/console';
-
-var _debug = false;
+const _debug = false;
+const amplitudeClient = new AmplitudeClient();
 
 const Amplitude = {
-  initialize: function (amplitudeTrackingCode) {
-    if (!amplitudeTrackingCode) {
-      warn('amplitudeTrackingCode is required in initialize()');
+  /**
+   * Initialize amplitude
+   * @param apiKey {String} required
+   * @param userId {String} optional
+   * @param config {Object} optional
+   * @param cb {Function} optional
+   */
+  init: function (apiKey, userID, config, cb) {
+    if (!isString(apiKey)) {
+      warn('[init] apiKey is required');
       return;
+    }
+    if(!isNil(userID) && !isString(userID)) {
+      warn('[init] userId should be a string');
+    }
+    if(!isNil(config) && !isPlainObject(config)) {
+      warn('[init] config should be an object');
+    }
+    if(!isNil(cb) && !isFunction(cb)) {
+      warn('[init] callback should be a function');
     }
 
     (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script");r.type="text/javascript";
@@ -29,7 +46,7 @@ const Amplitude = {
     if(!n._iq.hasOwnProperty(e)){n._iq[e]={_q:[]};v(n._iq[e])}return n._iq[e]};e.amplitude=n;
     })(window,document);
 
-    amplitude.getInstance().init(amplitudeTrackingCode);
+    amplitudeClient.init(apiKey);
   },
 
   /**
@@ -50,42 +67,129 @@ const Amplitude = {
   },
 
   /**
-   * event:
-   * Event tracking
-   * @param eventName {String} required
-   * @param eventProperties {Object} optional
+   * Clear user properties
+   * (careful, this is irreversible!)
    */
-  event: function (eventName, eventProperties) {
-    if(!eventName) {
-      warn('event name is required');
+  clearUserProperties: function () {
+    amplitudeClient.clearUserProperties()
+  },
+
+  /**
+   * Returns current session id
+   */
+  getSessionId: function() {
+    return amplitudeClient.getSessionId();
+  },
+
+  /**
+   * Applies user property operations
+   * @param idObj {Object} required
+   * @param cb {Function} optional
+   */
+  identify: function(idObj, cb) {
+    if(!idObj) {
+      error('[identify] identify_obj is required.');
+      return;
+    }
+    if(!isNil(idObj) && !isPlainObject(idObj)) {
+      error('[identify] identify_obj should be an object.');
       return;
     }
 
-    amplitude.getInstance().logEvent(eventName, eventProperties);
+    amplitudeClient.identify(idObj, cb);
   },
 
   /**
-   * resetUserId:
-   * 
+   * Returns if a new session was created at init
+   */
+  isNewSession: function() {
+    return amplitudeClient.isNewSession();
+  },
+
+  /**
+   * Event tracking
+   * @param eventType {String} required
+   * @param eventProperties {Object} optional
+   * @param cb {Function} optional
+   */
+  logEvent: function (eventType, eventProperties, cb) {
+    if(!eventType) {
+      error('[logEvent] eventType is required.');
+      return;
+    }
+    if(!isString(eventType)) {
+      warn('[logEvent] eventType should be a string.');
+    }
+    if(!isPlainObject(eventProperties)) {
+      warn('[logEvent] eventProperties should be an object.')
+    }
+    if(!isFunction(cb)) {
+      warn('[logEvent] callback should be a function.');
+    }
+
+    amplitudeClient.logEvent(eventType, eventProperties);
+  },
+
+  /**
+   * Event tracking w/ timestamp
+   * @param eventType {String} required
+   * @param eventProperties {Object} optional
+   * @param timestamp {Number} optional
+   * @param cb {Function} optional
+   */
+  logEventWithTimestamp: function (eventType, eventProperties, timestamp, cb) {
+    if(isNil(eventType)) {
+      error('[logEvent] eventType is required.');
+      return;
+    }
+    if(!isNil(eventType) && !isString(eventType)) {
+      warn('[logEvent] eventType should be a string.');
+    }
+    if(!isNil(eventProperties) && !isPlainObject(eventProperties)) {
+      warn('[logEvent] eventProperties should be an object.')
+    }
+    if(!isNil(timestamp) && !isNumber(timestamp)) {
+      warn('[logEvent] timestamp should be a number.');
+    }
+    if(!isNil(cb) && !isFunction(cb)) {
+      warn('[logEvent] callback should be a function.');
+    }
+  },
+
+  /**
+   * Resets the user id
    */
   resetUserId: function () {
-    amplitude.getInstance().setUserId(null);
-    amplitude.getInstance().regenerateDeviceId();
+    amplitudeClient.setUserId(null);
+    amplitudeClient.regenerateDeviceId();
   },
 
   /**
-   * setUserId:
-   * 
+   * Set user id
    * @param userID {String} required
    */
   setUserId: function (userID) {
     if(!userID) {
-      warn('userID is required');
+      error('[setUserId] userID is required.');
+      return;
+    }
+    if(!isString(userId)) {
+      error('[setUserId] userID should be a string.');
       return;
     }
 
-    amplitude.getInstance().setUserId(userID);
-  }
+    amplitudeClient.setUserId(userID);
+  },
+
+  // DEPRECATED
+  event: function (a, b, c) {
+    warn('[event] has been deprecated. Please use [logEvent].');
+    logEvent(a, b, c);
+  },
+  initialize: function (a, b, c, d) {
+    warn('[initialize] has been deprecated. Please use [init].');
+    init(a, b, c, d);
+  },
 };
 
 export default Amplitude;
