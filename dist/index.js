@@ -188,7 +188,7 @@ var Amplitude = {
 
   /**
    * resetUserId:
-   * 
+   *
    */
   resetUserId: function resetUserId() {
     amplitude.getInstance().setUserId(null);
@@ -197,7 +197,7 @@ var Amplitude = {
 
   /**
    * setUserId:
-   * 
+   *
    * @param userID {String} required
    */
   setUserId: function setUserId(userID) {
@@ -207,6 +207,20 @@ var Amplitude = {
     }
 
     amplitude.getInstance().setUserId(userID);
+  },
+
+  /**
+   * setUserProperties:
+   *
+   * @userProps userProps {Object} required
+   */
+  setUserProperties: function setUserProperties(userProps) {
+    if (!userProps) {
+      (0, _console.warn)('userProps are required');
+      return;
+    }
+
+    amplitude.getInstance().setUserProperties(userProps);
   }
 };
 
