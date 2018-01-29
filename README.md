@@ -187,3 +187,9 @@ npm run build
 #### Acknowledgements
 
 * [react-ga](https://github.com/react-ga/react-ga).
+
+#### Contributors
+
+* [chasedut](https://github.com/chasedut).
+* [emilioastarita](https://github.com/emilioastarita).
+* [lol-russo](https://github.com/lol-russo).
