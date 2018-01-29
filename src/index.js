@@ -181,6 +181,20 @@ const Amplitude = {
     amplitudeClient.setUserId(userID);
   },
 
+  /**
+   * Sets user properties:
+   *
+   * @userProps userProps {Object} required
+   */
+  setUserProperties: function (userProps) {
+    if(!userProps) {
+      warn('userProps are required');
+      return;
+    }
+
+    amplitudeClient.setUserProperties(userProps);
+  },
+
   // DEPRECATED
   event: function (a, b, c) {
     warn('[event] has been deprecated. Please use [logEvent].');
@@ -189,7 +203,7 @@ const Amplitude = {
   initialize: function (a, b, c, d) {
     warn('[initialize] has been deprecated. Please use [init].');
     init(a, b, c, d);
-  },
+  }
 };
 
 export default Amplitude;
