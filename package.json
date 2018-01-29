@@ -1,6 +1,6 @@
 {
   "name": "react-amplitude",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "React Amplitude Analytics",
   "entry": "src/index.js",
   "main": "dist/index.js",
