@@ -8,7 +8,6 @@ import {isFunction, isNil, isPlainObject, isString} from 'lodash';
 import {error, log, warn} from './utils/console';
 
 const _debug = false;
-const amplitudeClient = new AmplitudeClient();
 
 const Amplitude = {
   /**
@@ -46,7 +45,7 @@ const Amplitude = {
     if(!n._iq.hasOwnProperty(e)){n._iq[e]={_q:[]};v(n._iq[e])}return n._iq[e]};e.amplitude=n;
     })(window,document);
 
-    amplitudeClient.init(apiKey);
+    amplitude.getInstance().init(apiKey);
   },
 
   /**
@@ -71,14 +70,14 @@ const Amplitude = {
    * (careful, this is irreversible!)
    */
   clearUserProperties: function () {
-    amplitudeClient.clearUserProperties()
+    amplitude.getInstance().clearUserProperties()
   },
 
   /**
    * Returns current session id
    */
   getSessionId: function() {
-    return amplitudeClient.getSessionId();
+    return amplitude.getInstance().getSessionId();
   },
 
   /**
@@ -96,14 +95,14 @@ const Amplitude = {
       return;
     }
 
-    amplitudeClient.identify(idObj, cb);
+    amplitude.getInstance().identify(idObj, cb);
   },
 
   /**
    * Returns if a new session was created at init
    */
   isNewSession: function() {
-    return amplitudeClient.isNewSession();
+    return amplitude.getInstance().isNewSession();
   },
 
   /**
@@ -127,7 +126,7 @@ const Amplitude = {
       warn('[logEvent] callback should be a function.');
     }
 
-    amplitudeClient.logEvent(eventType, eventProperties);
+    amplitude.getInstance().logEvent(eventType, eventProperties);
   },
 
   /**
@@ -160,8 +159,8 @@ const Amplitude = {
    * Resets the user id
    */
   resetUserId: function () {
-    amplitudeClient.setUserId(null);
-    amplitudeClient.regenerateDeviceId();
+    amplitude.getInstance().setUserId(null);
+    amplitude.getInstance().regenerateDeviceId();
   },
 
   /**
@@ -178,7 +177,7 @@ const Amplitude = {
       return;
     }
 
-    amplitudeClient.setUserId(userID);
+    amplitude.getInstance().setUserId(userID);
   },
 
   /**
@@ -192,7 +191,7 @@ const Amplitude = {
       return;
     }
 
-    amplitudeClient.setUserProperties(userProps);
+    amplitude.getInstance().setUserProperties(userProps);
   },
 
   // DEPRECATED
