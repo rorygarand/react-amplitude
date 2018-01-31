@@ -165,19 +165,10 @@ const Amplitude = {
 
   /**
    * Set user id
-   * @param userID {String} required
+   * @param userID {String} or null required
    */
-  setUserId: function (userID) {
-    if(!userID) {
-      error('[setUserId] userID is required.');
-      return;
-    }
-    if(!isString(userId)) {
-      error('[setUserId] userID should be a string.');
-      return;
-    }
-
-    amplitude.getInstance().setUserId(userID);
+  setUserId: function (userId) {
+    amplitude.getInstance().setUserId(userId);
   },
 
   /**
