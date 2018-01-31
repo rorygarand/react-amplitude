@@ -4,7 +4,7 @@
  * @package react-amplitude
  * @author  Rory Garand <rory@mettleup.com>
  */
-import {isFunction, isNil, isPlainObject, isString} from 'lodash';
+import {isFunction, isNil, isPlainObject, isString, isNull} from 'lodash';
 import {error, log, warn} from './utils/console';
 
 const _debug = false;
@@ -165,19 +165,14 @@ const Amplitude = {
 
   /**
    * Set user id
-   * @param userID {String} required
+   * @param userID {String} or null required
    */
-  setUserId: function (userID) {
-    if(!userID) {
-      error('[setUserId] userID is required.');
-      return;
-    }
-    if(!isString(userId)) {
-      error('[setUserId] userID should be a string.');
-      return;
+  setUserId: function (userId) {
+    if(!isString(userId) && !isNull(userId)) {
+      warn('[setUserId] userId must be a string or null.');
     }
 
-    amplitude.getInstance().setUserId(userID);
+    amplitude.getInstance().setUserId(userId);
   },
 
   /**
