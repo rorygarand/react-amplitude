@@ -4,7 +4,11 @@
  * @package react-amplitude
  * @author  Rory Garand <rory@mettleup.com>
  */
-import {isFunction, isNil, isPlainObject, isString, isNull} from 'lodash';
+import isFunction from 'lodash.isfunction';
+import isNil from 'lodash.isnil';
+import isPlainObject from 'lodash.isplainobject';
+import isString from 'lodash.isstring';
+import isNull from 'lodash.isnull';
 import {error, log, warn} from './utils/console';
 
 const _debug = false;
@@ -17,12 +21,12 @@ const Amplitude = {
    * @param config {Object} optional
    * @param cb {Function} optional
    */
-  init: function (apiKey, userID, config, cb) {
+  init: function (apiKey, userId, config, cb) {
     if (!isString(apiKey)) {
       warn('[init] apiKey is required');
       return;
     }
-    if(!isNil(userID) && !isString(userID)) {
+    if(!isNil(userId) && !isString(userId)) {
       warn('[init] userId should be a string');
     }
     if(!isNil(config) && !isPlainObject(config)) {
@@ -165,7 +169,7 @@ const Amplitude = {
 
   /**
    * Set user id
-   * @param userID {String} or null required
+   * @param userId {String} or null required
    */
   setUserId: function (userId) {
     if(!isString(userId) && !isNull(userId)) {
