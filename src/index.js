@@ -49,7 +49,7 @@ const Amplitude = {
     if(!n._iq.hasOwnProperty(e)){n._iq[e]={_q:[]};v(n._iq[e])}return n._iq[e]};e.amplitude=n;
     })(window,document);
 
-    amplitude.getInstance().init(apiKey);
+    amplitude.getInstance().init(apiKey, userId, config);
   },
 
   /**
