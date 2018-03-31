@@ -38,7 +38,7 @@ const Amplitude = {
 
 
     if (!'amplitude' in window) {
-        require('third-party-amplitude')((window, document))
+        require('./third-party-amplitude')((window, document))
     }
 
     config = config || {};
