@@ -123,8 +123,9 @@ const Amplitude = {
     if(!isFunction(cb)) {
       warn('[logEvent] callback should be a function.');
     }
-
-    amplitude.getInstance().logEvent(eventType, eventProperties);
+    cb = cb || function() {}
+    eventProperties = eventProperties || {}
+    amplitude.getInstance().logEvent(eventType, eventProperties, cb);
   },
 
   /**
@@ -190,11 +191,11 @@ const Amplitude = {
   // DEPRECATED
   event: function (a, b, c) {
     warn('[event] has been deprecated. Please use [logEvent].');
-    logEvent(a, b, c);
+    this.logEvent(a, b, c);
   },
   initialize: function (a, b, c, d) {
     warn('[initialize] has been deprecated. Please use [init].');
-    init(a, b, c, d);
+    this.init(a, b, c, d);
   }
 };
 
