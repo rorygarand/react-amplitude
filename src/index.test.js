@@ -12,8 +12,6 @@ test('Init method must be called with args', () => {
 
     const options = {};
     const callback = () => {};
-    Amplitude.init('key', 'uId', {}, () => {});
-
+    Amplitude.init('key', 'uId', options, callback);
     expect(initMethod).toHaveBeenCalledWith('key', 'uId', options, callback);
-
 });

@@ -41,7 +41,9 @@ const Amplitude = {
         require('third-party-amplitude')((window, document))
     }
 
-    amplitude.getInstance().init(apiKey);
+    config = config || {};
+    cb = cb || function() {};
+    amplitude.getInstance().init(apiKey, userId, config, cb);
   },
 
   /**
