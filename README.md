@@ -48,7 +48,7 @@ Must be initialized using this function before any of the other tracking functio
 ###### Example
 
 ```js
-Amplitude.init('YOUR_UNIQUE_TRACKING_CODE');
+Amplitude.init(apiKey, userId, config, cb);
 ```
 
 |Value|Notes|
@@ -65,7 +65,7 @@ Log an event to Amplitude.
 ###### Example
 
 ```js
-Amplitude.logEvent('EVENT_NAME_TO_BE_LOGGED');
+Amplitude.logEvent(eventName, eventProperties, cb);
 ```
 
 |Value|Notes|
@@ -81,7 +81,7 @@ Log an event to Amplitude.
 ###### Example
 
 ```js
-Amplitude.logEventWithTimestamp('EVENT_NAME_TO_BE_LOGGED');
+Amplitude.logEventWithTimestamp(eventName, eventProperties, timestamp, cb);
 ```
 
 |Value|Notes|
@@ -157,7 +157,7 @@ Send an identify call containing user property operations to Amplitude servers
 ###### Example
 
 ```js
-Amplitude.identify(idObj);
+Amplitude.identify(idObj, cb);
 ```
 
 |Value|Notes|
