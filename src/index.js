@@ -36,7 +36,6 @@ const Amplitude = {
       warn('[init] callback should be a function');
     }
 
-
     if (!'amplitude' in window) {
         require('./third-party-amplitude')((window, document))
     }
