@@ -6,6 +6,7 @@
  */
 import isFunction from 'lodash.isfunction';
 import isNil from 'lodash.isnil';
+import isNumber from 'lodash.isnumber';
 import isBoolean from 'lodash.isboolean';
 import isPlainObject from 'lodash.isplainobject';
 import isString from 'lodash.isstring';
