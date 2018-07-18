@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "NODE_ENV=development webpack",
-    "test": "mocha test/*.test.js && mocha test/**/*.test.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -34,8 +34,11 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.3",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
+    "jest": "^22.4.3",
+    "regenerator-runtime": "^0.11.1",
     "webpack": "^3.10.0"
   }
 }
