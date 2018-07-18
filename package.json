@@ -6,7 +6,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "NODE_ENV=development webpack",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "yarn test --coverage"
   },
   "repository": {
     "type": "git",
