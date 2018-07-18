@@ -30,11 +30,11 @@ test('logEvent test called arguments', () => {
 
     const options = {};
     const callback = () => {};
-    Amplitude.initialize('key', 'uId', options, callback);
+    Amplitude.init('key', 'uId', options, callback);
 
     const eventProperties = {};
     const callbackEvent = () => {}
-    Amplitude.event('event', eventProperties, callbackEvent)
+    Amplitude.logEvent('event', eventProperties, callbackEvent)
     expect(logEvent).toHaveBeenCalledWith('event', eventProperties, callbackEvent);
 
 });
@@ -53,11 +53,11 @@ test('Deprecated methods must call new methods', () => {
 
     const options = {};
     const callback = () => {};
-    Amplitude.initialize('key', 'uId', options, callback);
+    Amplitude.init('key', 'uId', options, callback);
 
     const eventProperties = {};
     const callbackEvent = () => {}
-    Amplitude.event('event', eventProperties, callbackEvent)
+    Amplitude.logEvent('event', eventProperties, callbackEvent)
     expect(logEvent).toHaveBeenCalledWith('event', eventProperties, callbackEvent);
 
 });
