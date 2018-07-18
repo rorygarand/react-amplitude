@@ -6,6 +6,7 @@
  */
 import isFunction from 'lodash.isfunction';
 import isNil from 'lodash.isnil';
+import isBoolean from 'lodash.isboolean';
 import isPlainObject from 'lodash.isplainobject';
 import isString from 'lodash.isstring';
 import isNull from 'lodash.isnull';
@@ -113,13 +114,13 @@ const Amplitude = {
       error('[logEvent] eventType is required.');
       return;
     }
-    if(!isString(eventType)) {
+    if(!isNil(eventType) && !isString(eventType)) {
       warn('[logEvent] eventType should be a string.');
     }
-    if(!isPlainObject(eventProperties)) {
+    if(!isNil(eventProperties) && !isPlainObject(eventProperties)) {
       warn('[logEvent] eventProperties should be an object.')
     }
-    if(!isFunction(cb)) {
+    if(!isNil(cb) && !isFunction(cb)) {
       warn('[logEvent] callback should be a function.');
     }
     cb = cb || function() {}
@@ -176,7 +177,7 @@ const Amplitude = {
   /**
    * Sets user properties:
    *
-   * @userProps userProps {Object} required
+   * @param userProps {Object} required
    */
   setUserProperties: function (userProps) {
     if(!userProps) {
@@ -185,6 +186,21 @@ const Amplitude = {
     }
 
     amplitude.getInstance().setUserProperties(userProps);
+  },
+
+  
+  /**
+   * Sets whether to opt current user out of tracking.
+   *
+   * @param enable {Boolean} required
+   */
+  setOptOut: function (enable) {
+    if(!isBoolean(enable)) {
+      warn('[setOptOut] enable must be a boolean');
+      return;
+    }
+
+    amplitude.getInstance().setOptOut(enable);
   },
 
   // DEPRECATED
