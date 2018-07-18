@@ -148,11 +148,16 @@ const Amplitude = {
       warn('[logEvent] eventProperties should be an object.')
     }
     if(!isNil(timestamp) && !isNumber(timestamp)) {
-      warn('[logEvent] timestamp should be a number.');
+      error('[logEvent] timestamp should be a number.');
+      return;
     }
     if(!isNil(cb) && !isFunction(cb)) {
       warn('[logEvent] callback should be a function.');
     }
+
+    cb = cb || function() {}
+    eventProperties = eventProperties || {}
+    amplitude.getInstance().logEventWithTimestamp(eventType, eventProperties, timestamp, cb);
   },
 
   /**
