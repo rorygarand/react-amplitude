@@ -1,63 +1,74 @@
 import Amplitude from './index.js';
 
-test('Init method must be called with args', () => {
+let clearUserProperties;
+let getSessionId;
+let identify;
+let init;
+let isNewSession;
+let logEvent;
+let logEventWithTimestamp;
+let resetUserId;
+let setOptOut;
+let setUserId;
+let setUserProperties;
 
-    const initMethod = jest.fn();
+describe('Amplitude', () => {
+    beforeEach(() => {
+        clearUserProperties = jest.fn();
+        getSessionId = jest.fn();
+        identify = jest.fn();
+        init = jest.fn();
+        isNewSession = jest.fn();
+        logEvent = jest.fn();
+        logEventWithTimestamp = jest.fn();
+        resetUserId = jest.fn();
+        setOptOut = jest.fn();
+        setUserId = jest.fn();
+        setUserProperties = jest.fn();
 
-    window.amplitude = {
-        getInstance: () => ({
-            init: initMethod
-        }),
-    };
+        window.amplitude = {
+            getInstance: () => ({
+                clearUserProperties,
+                getSessionId,
+                identify,
+                init,
+                isNewSession,
+                logEvent,
+                logEventWithTimestamp,
+                resetUserId,
+                setOptOut,
+                setUserId,
+                setUserProperties
+            })
+        };
+    });
 
-    const options = {};
-    const callback = () => {};
-    Amplitude.init('key', 'uId', options, callback);
-    expect(initMethod).toHaveBeenCalledWith('key', 'uId', options, callback);
-});
+    it('should call init with args', () => {
+        const options = {};
+        const callback = () => {};
+        Amplitude.init('key', 'uId', options, callback);
+        expect(init).toHaveBeenCalledWith('key', 'uId', options, callback);
+    });
 
-test('logEvent test called arguments', () => {
-    const initMethod = jest.fn();
-    const logEvent = jest.fn();
+    it('it should call logEvent with args', () => {
+        const options = {};
+        const callback = () => {};
+        Amplitude.init('key', 'uId', options, callback);
 
-    window.amplitude = {
-        getInstance: () => ({
-            init: initMethod,
-            logEvent: logEvent,
-        }),
+        const eventProperties = {};
+        const callbackEvent = () => {}
+        Amplitude.logEvent('event', eventProperties, callbackEvent)
+        expect(logEvent).toHaveBeenCalledWith('event', eventProperties, callbackEvent);
+    });
 
-    };
+    it('deprecated methods should call new methods', () => {
+        const options = {};
+        const callback = () => {};
+        Amplitude.initialize('key', 'uId', options, callback);
 
-    const options = {};
-    const callback = () => {};
-    Amplitude.init('key', 'uId', options, callback);
-
-    const eventProperties = {};
-    const callbackEvent = () => {}
-    Amplitude.logEvent('event', eventProperties, callbackEvent)
-    expect(logEvent).toHaveBeenCalledWith('event', eventProperties, callbackEvent);
-
-});
-
-test('Deprecated methods must call new methods', () => {
-    const initMethod = jest.fn();
-    const logEvent = jest.fn();
-
-    window.amplitude = {
-        getInstance: () => ({
-            init: initMethod,
-            logEvent: logEvent,
-        }),
-
-    };
-
-    const options = {};
-    const callback = () => {};
-    Amplitude.init('key', 'uId', options, callback);
-
-    const eventProperties = {};
-    const callbackEvent = () => {}
-    Amplitude.logEvent('event', eventProperties, callbackEvent)
-    expect(logEvent).toHaveBeenCalledWith('event', eventProperties, callbackEvent);
-
+        const eventProperties = {};
+        const callbackEvent = () => {}
+        Amplitude.event('event', eventProperties, callbackEvent)
+        expect(logEvent).toHaveBeenCalledWith('event', eventProperties, callbackEvent);
+    });
 });
