@@ -1,4 +1,4 @@
-# react-amplitude
+# react-amplitude 
 ### React Amplitude Analytics
 
 [![npm version](https://img.shields.io/npm/v/react-amplitude.svg?style=flat-square)](https://www.npmjs.com/package/react-amplitude)
