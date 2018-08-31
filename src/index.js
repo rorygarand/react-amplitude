@@ -38,7 +38,7 @@ const Amplitude = {
       warn('[init] callback should be a function');
     }
 
-    if (!'amplitude' in window) {
+    if (isNil(window.amplitude)) {
         require('./utils/amplitude')((window, document))
     }
 
