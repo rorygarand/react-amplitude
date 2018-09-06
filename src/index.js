@@ -39,7 +39,7 @@ const Amplitude = {
     }
 
     if (isNil(window.amplitude)) {
-        require('./utils/amplitude')((window, document))
+      require("./utils/amplitude").default(window, document);
     }
 
     config = config || {};
