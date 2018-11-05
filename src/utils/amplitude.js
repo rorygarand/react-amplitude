@@ -3,7 +3,7 @@ export default function (e, t) {
     var r = t.createElement("script");
     r.type = "text/javascript";
     r.async = true;
-    r.src = "https://d24n15hnbwhuhn.cloudfront.net/libs/amplitude-4.1.0-min.gz.js";
+    r.src = "https://cdn.amplitude.com/libs/amplitude-4.5.0-min.gz.js";
     r.onload = function () {
         e.amplitude.runQueuedFunctions()
     };
